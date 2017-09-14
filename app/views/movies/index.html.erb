@@ -1,0 +1,9 @@
+<h2>Here is your index of all the movies</h2>
+
+<!-- <button>Wishlist Movies</button>  Add the button to filter those wishlist movies here-->
+
+<% @movies_watched.each do |movie_watched|%>
+<h4><%= movie_watched.movie["title"] %></h4>
+  <p><img src=<%= movie_watched.movie["image"]%></p>
+  <p><%= movie_watched.movie["director"] %></p>
+<% end %>
