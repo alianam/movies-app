@@ -7,3 +7,7 @@
   <p><img src=<%= movie_watched.movie["image"]%></p>
   <p><%= movie_watched.movie["director"] %></p>
 <% end %>
+
+<%= form_tag '/movies/index/all', method: :get do %>
+  <input type="Submit" value="All Movies!" name="all_movies">
+<% end %>

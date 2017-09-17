@@ -1,4 +1,23 @@
-This is where the form will be for submitting a new User Movie
+Submit a new movie to add to your list:
+<hr>
+<br>
 
-<p>Movie Name: <input type="text" name="input_title"></p>
-</p></p>
+<%= form_tag '/movies/create', method: :post do %>
+  Movie Name:
+  <select name="input_title">
+    <option value="The Nightmare Before Christmas">The Nightmare Before Christmas</option>
+    <option value="Drive">Drive</option>
+    <option value="The Tree of Life">The Tree of Life</option>
+    <option value="The Neon Demon">The Neon Demon</option>
+  </select>
+  <p>Movie Rating: <input type="number" name="input_rating"></p>
+  <p>Theatre: <input type="text" name="input_theatre"></p> <!-- eventually have this be dropdown or autocomplete list -->
+  <p>Date Watched: <input type="text" name="input_date" placeholder="mm-dd-yy"></p> 
+  <p>Comment: <input type="text" name="input_comment"></p> 
+  Status:
+  <select name="input_status">
+    <option value="watched">Watched</option>
+    <option value="wishlist">Watch Later</option>
+  </select> 
+  <p><input type="submit" name="Add Movie"></p>
+<% end %>
