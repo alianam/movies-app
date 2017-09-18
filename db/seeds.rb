@@ -11,20 +11,36 @@ require 'awesome_print'
 
 # seed the table with movies and their data from csv
 
+# csv_text = File.read(Rails.root.join('lib', 'seeds', 'movie_metadata.csv'))
+# csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+# row_counter = 2
+
+# csv.each do |row|
+#   row_counter += 1
+#   t = Movie.new
+#   t.title = row['movie_title']
+#   t.title
+#   t.director = row['director_name']
+#   t.genre = row['genres']
+#   t.duration = row['duration']
+#   t.imdb_link = row['movie_imdb_link']
+#   t.save
+# end
+
+# puts "There are now #{Movie.count} rows in the movies table."
+
+# seed the table with movies and their data from csv
+
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'movie_metadata.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-row_counter = 2
 
 csv.each do |row|
-  row_counter += 1
-  t = Movie.new
-  t.title = row['movie_title']
-  t.title
-  t.director = row['director_name']
-  t.genre = row['genres']
-  t.duration = row['duration']
-  t.imdb_link = row['movie_imdb_link']
-  t.save
+  # t = Genre.new
+  genres = row['genres'].split('|')
+  genres.each do |genre|
+    
 end
 
-puts "There are now #{Movies.count} rows in the movies table."
+
+
+
