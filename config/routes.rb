@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get '/movies/:id/edit' => 'movies#edit'
   get '/movies/:id' => 'movies#show'
   put '/movies/:id' => 'movies#update'
+
+  get '/watched_movies/index' => 'watched_movies#index'
+  get '/watched_movies/new' => 'watched_movies#new'
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   

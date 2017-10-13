@@ -1,0 +1,9 @@
+Add a Movie you've watched:
+
+<%= form_tag '/watched_movies/create', method: :post do %>
+  <p>Title: <%= %></p>
+    <% @movies.each do |movie| %>
+      <select name="movie_id">
+      <option value="<% movie.id %>"><%= movie.title %></option>
+  <% end %>
+<% end %>

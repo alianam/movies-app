@@ -21,6 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'nokogiri'
 require 'open-uri'
 gem 'awesome_print'
+gem 'kaminari'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

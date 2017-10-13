@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171011180749) do
+ActiveRecord::Schema.define(version: 20171011185241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,18 +24,6 @@ ActiveRecord::Schema.define(version: 20171011180749) do
 
   create_table "genres", force: :cascade do |t|
     t.string "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "movie_users", force: :cascade do |t|
-    t.integer "movie_id"
-    t.integer "rating"
-    t.string "theatre_name"
-    t.string "date_watched"
-    t.string "comment"
-    t.integer "user_id"
-    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,6 +46,25 @@ ActiveRecord::Schema.define(version: 20171011180749) do
     t.string "first_name"
     t.string "last_name"
     t.string "zip_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "watched_movies", force: :cascade do |t|
+    t.integer "movie_id"
+    t.integer "user_id"
+    t.string "comment"
+    t.string "date_watched"
+    t.string "theatre_name"
+    t.string "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "wishlist_movies", force: :cascade do |t|
+    t.integer "movie_id"
+    t.integer "user_id"
+    t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

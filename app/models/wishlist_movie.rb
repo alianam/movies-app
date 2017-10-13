@@ -1,0 +1,2 @@
+class WishlistMovie < ApplicationRecord
+end
