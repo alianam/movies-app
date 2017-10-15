@@ -1,0 +1,10 @@
+Your Details:
+
+<p>Username: <%= @user.username %></p>
+<p>First Name: <%= @user.first_name %></p>
+<p>Last Name: <%= @user.last_name %></p>
+<p>Zip Code: <%= @user.zip_code %></p>
+<br>
+<%= form_tag "/users/#{@user.id}/edit", method: :get do %>
+  <button name="submit" value="submit">Edit Account</button>
+<% end %>

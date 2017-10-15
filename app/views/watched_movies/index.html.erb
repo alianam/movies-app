@@ -1,14 +1,21 @@
 here is your list of watched movies
 
-<% @watched_movies.each do |watched_movie| %>
-  <p><img src="<%= watched_movie.movie.movie_poster %>"</p>
-  <p>Title: <%= watched_movie.movie.title%><p>
-  <p>Director: <%= watched_movie.movie.director%><p>
-  <p>Rating: <%= watched_movie.rating%><p>
-  <p>Your Thoughts: <%= watched_movie.comment%><p>
-  <p>Movie Theatre: <%= watched_movie.theatre_name %><p>
-  <p>Date Watched: <%= watched_movie.date_watched %><p>
-  <%= form_tag "/watched_movies/#{watched_movie.id}/edit", method: :get do %>
-    <button name="edit movie" value="edit">Edit</button>
+<% if @watched_movies %>
+  <% @watched_movies.each do |watched_movie| %>
+    <p><img src="<%= watched_movie.movie.movie_poster %>"</p>
+    <p>Title: <%= watched_movie.movie.title%><p>
+    <p>Director: <%= watched_movie.movie.director%><p>
+    <p>Rating: <%= watched_movie.rating%><p>
+    <p>Your Thoughts: <%= watched_movie.comment%><p>
+    <p>Movie Theatre: <%= watched_movie.theatre_name %><p>
+    <p>Date Watched: <%= watched_movie.date_watched %><p>
+    <%= form_tag "/watched_movies/#{watched_movie.id}/edit", method: :get do %>
+      <button name="edit movie" value="edit">Edit</button>
+    <% end %>
+  <% end %>
+<% else %>
+  <p>You don't have any movies in your Watched list...</p>
+  <%= form_tag '/watched_movies/new', method: :get do %>
+    <button name="submit" value="submit">Add Movie to Watched List</button>
   <% end %>
 <% end %>

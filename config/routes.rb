@@ -26,7 +26,10 @@ Rails.application.routes.draw do
   get '/users/:id/edit' => 'users#edit'
   put '/users/:id' => 'users#update'
 
-  
+  get "/login" => "sessions#new"
+  post "/login" => "sessions#create"
+  get "/logout" => "sessions#destroy"
+
   # index
   # show
   # create
