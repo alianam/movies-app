@@ -18,7 +18,7 @@ class WishlistMoviesController < ApplicationController
     new_wishlist_movie = WishlistMovie.create!(
       movie_id: params[:movie_id],
       # change this to param
-      user_id: 1,
+      user_id: current_user.id,
       comment: params[:comment]
     )
     redirect_to '/wishlist_movies'

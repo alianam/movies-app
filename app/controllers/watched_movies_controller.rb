@@ -1,7 +1,6 @@
 class WatchedMoviesController < ApplicationController
   def index
-    # change this to use the current user
-    @watched_movies = WatchedMovie.where(user_id: 1).order(:date_watched)
+    @watched_movies = WatchedMovie.where(user_id: current_user.id).order(:date_watched)
     render 'index.html.erb'
   end
 
@@ -13,13 +12,16 @@ class WatchedMoviesController < ApplicationController
   def create
     new_watched_movie = WatchedMovie.create(
       movie_id: params[:movie_id],
-      # change this to a param
-      user_id: 1,
+      user_id: current_user.id,
       comment: params[:comment],
       date_watched: params[:date_watched],
       theatre_name: params[:theatre_name],
       rating: params[:rating]
     )
+    if params[:wishlist_id]
+      delete_wishlist = WishlistMovie.find_by(id: params[:wishlist_id])
+      delete_wishlist.destroy
+    end
     redirect_to '/watched_movies'
   end
 

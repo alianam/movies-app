@@ -1,7 +1,7 @@
 Movies You Want To Watch:
 
 <% @wishlist_movies.each do |movie| %>
-  <p><img src="<%= movie.movie.movie_poster %>"></p>
+  <p><a href="/wishlist_movies/<%= movie.id %>"><img src="<%= movie.movie.movie_poster %>"></a></p>
   <p><%= movie.movie.title %></p>
   <p>Comment: <%= movie.comment %></p>
 <% end %>

@@ -15,7 +15,8 @@ A Movie You Want To Watch:
 Watched It? Add it to your Watched List..
 <%= form_tag "/watched_movies", method: :post do %>
   <input type="hidden" name="movie_id" value="<%= @wishlist_movie.movie.id%>">
-  <!-- Going to need to add hidden param for user id -->
+  <input type="hidden" name="user_id" value="<%= current_user.id %>">
+  <input type="hidden" name="wishlist_id" value="<%= @wishlist_movie.id %>">
   <p>Comment: <input type="text" name="comment" value="<%= @wishlist_movie.comment%>"></p>
   <p>Rating: <input type="text" name="rating"></p>
   <p>Theatre Where Watched: <input type="text" name="theatre_name"></p>

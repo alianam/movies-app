@@ -1,0 +1,28 @@
+<%= form_tag "/feeds/?feed=#{params[:feed]}", method: :get do %>
+  <button name="feed" value="indie">Indie</button>
+  <button name="feed" value="top10boxoffice">Top 10 Box Office</button>
+  <button name="feed" value="newmovies">New Movies</button>
+  <button name="feed" value="comingsoonmovies">Coming Soon Movies</button>
+<% end %>
+
+<% if params[:feed] == 'indie' %>
+  <% @movies.each do |movie| %>
+    <p><%= raw(movie.text) %></p>
+  <% end %>
+<% elsif params[:feed] == 'rollingstone'%>
+  <% @movie_titles.each_with_index do |title, index| %>
+    <p><%= title.text %></p>
+    <p><%= raw(@content[index]) %></p>
+    <p><img src="<%= @image[index]['url'] %>"></p>
+  <% end %>
+<% else %>
+  <% @movies.each_with_index do |movie, index| %>
+    <h4><%= @movie_titles[index].text %></h4>
+    <p><%= raw(movie.text) %></p>
+  <% end %>
+<% end %>
+
+<!-- figure out how these were combined -->
+<% @movie_titles.each do |title| %>
+  <p><%= title.text %></p>
+<% end %>

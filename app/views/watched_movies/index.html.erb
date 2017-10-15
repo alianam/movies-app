@@ -1,6 +1,6 @@
 here is your list of watched movies
 
-<% if @watched_movies %>
+<% if @watched_movies != [] %>
   <% @watched_movies.each do |watched_movie| %>
     <p><img src="<%= watched_movie.movie.movie_poster %>"</p>
     <p>Title: <%= watched_movie.movie.title%><p>
