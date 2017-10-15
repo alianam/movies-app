@@ -1,9 +1,14 @@
 Add a Movie you've watched:
 
-<%= form_tag '/watched_movies/create', method: :post do %>
-  <p>Title: <%= %></p>
-    <% @movies.each do |movie| %>
-      <select name="movie_id">
-      <option value="<% movie.id %>"><%= movie.title %></option>
-  <% end %>
+<%= form_tag '/watched_movies', method: :post do %>
+  Title:
+  <select name="movie_id">
+  <% @movies.order(:title).each do |movie| %>
+    <option name="movie_id" value=<%= movie.id %>><%= movie.title %></option>
+  <% end %></select>
+  <p>Comment:<input type="text" name="comment"></p>
+  <p>Rating:<input type="text" name="rating"></p>
+  <p>Date Watched:<input type="text" name="date_watched" value= <%=Time.now.strftime('%Y-%m-%d')%> ></p>
+  <p>Theatre Name:<input type="text" name="theatre_name"></p>
+  <button name="Add Movie" type="submit">Add Movie</button>
 <% end %>

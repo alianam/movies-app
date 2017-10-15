@@ -1,0 +1,24 @@
+A Movie You Want To Watch:
+
+<p><img src="<%= @wishlist_movie.movie.movie_poster %>"></p>
+<p><%= @wishlist_movie.movie.title %></p>
+
+<h5>Update Your Entry:</h5>
+<%= form_tag "/wishlist_movies/#{@wishlist_movie.id}", method: :put do %>
+  <p>Edit Comment: <input type="text" name="comment" value= "<%= @wishlist_movie.comment %>"></p>
+  <button name="submit" value="submit">Update Entry</button>
+<% end %>
+
+<hr>
+<br>
+
+Watched It? Add it to your Watched List..
+<%= form_tag "/watched_movies", method: :post do %>
+  <input type="hidden" name="movie_id" value="<%= @wishlist_movie.movie.id%>">
+  <!-- Going to need to add hidden param for user id -->
+  <p>Comment: <input type="text" name="comment" value="<%= @wishlist_movie.comment%>"></p>
+  <p>Rating: <input type="text" name="rating"></p>
+  <p>Theatre Where Watched: <input type="text" name="theatre_name"></p>
+  <p>Date Watched: <input type="text" name="date_watched" value= <%=Time.now.strftime('%Y-%m-%d')%>></p>
+  <button name="submit" value="submit">Convert to Watched</button>
+<% end %>

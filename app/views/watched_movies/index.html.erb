@@ -8,4 +8,7 @@ here is your list of watched movies
   <p>Your Thoughts: <%= watched_movie.comment%><p>
   <p>Movie Theatre: <%= watched_movie.theatre_name %><p>
   <p>Date Watched: <%= watched_movie.date_watched %><p>
+  <%= form_tag "/watched_movies/#{watched_movie.id}/edit", method: :get do %>
+    <button name="edit movie" value="edit">Edit</button>
+  <% end %>
 <% end %>

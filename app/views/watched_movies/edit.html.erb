@@ -1,0 +1,11 @@
+Edit A Movie You've Watched:
+<%= form_tag "/watched_movies/#{@watched_movie.id}", method: :put do %>
+  <img src="<%= @watched_movie.movie.movie_poster %>">
+  <p>Title: <%= @watched_movie.movie.title %></p>
+  <input type="hidden" name="watched_movie_id" value=<%= @watched_movie.id %> >
+  <p>Comment:<input type="text" name="comment" value="<%= @watched_movie.comment %>"</p>
+  <p>Rating:<input type="text" name="rating" value="<%= @watched_movie.rating%>"></p>
+  <p>Date Watched:<input type="text" name="date_watched" value= "<%= @watched_movie.date_watched %>"></p>
+  <p>Theatre Name:<input type="text" name="theatre_name" value="<%= @watched_movie.theatre_name %>"></p>
+  <button name="Update Movie" type="submit">Update Movie</button>
+<% end %>

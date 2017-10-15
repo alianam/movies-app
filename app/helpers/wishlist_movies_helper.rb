@@ -1,0 +1,2 @@
+module WishlistMoviesHelper
+end

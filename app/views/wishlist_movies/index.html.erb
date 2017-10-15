@@ -1,0 +1,11 @@
+Movies You Want To Watch:
+
+<% @wishlist_movies.each do |movie| %>
+  <p><img src="<%= movie.movie.movie_poster %>"></p>
+  <p><%= movie.movie.title %></p>
+  <p>Comment: <%= movie.comment %></p>
+<% end %>
+
+<%= form_tag '/wishlist_movies/new', method: :get do %>
+  <button name="new_wishlist" value="new_wishlist">Add A Movie to Your Wishlist</button>
+<% end %>

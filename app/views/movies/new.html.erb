@@ -4,12 +4,7 @@ Submit a new movie to add to your list:
 
 <%= form_tag '/movies/create', method: :post do %>
   Movie Name:
-  <select name="input_title">
-    <option value="The Nightmare Before Christmas">The Nightmare Before Christmas</option>
-    <option value="Drive">Drive</option>
-    <option value="The Tree of Life">The Tree of Life</option>
-    <option value="The Neon Demon">The Neon Demon</option>
-  </select>
+  <select name="input_title"></select>
   <p>Movie Rating: <input type="number" name="input_rating"></p>
   <p>Theatre: <input type="text" name="input_theatre"></p> <!-- eventually have this be dropdown or autocomplete list -->
   <p>Date Watched: <input type="text" name="input_date" placeholder="mm-dd-yy"></p> 

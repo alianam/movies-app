@@ -1,0 +1,11 @@
+Add a Movie You Want To Watch:
+
+<%= form_tag '/wishlist_movies', method: :post do %>
+  Choose a Movie:
+  <select name="movie_id">
+  <% @movies.order(:title).each do |movie| %>
+    <option name="movie_id" value=<%= movie.id %>><%= movie.title %></option>
+  <% end %></select>
+  <p>Comment: <input type="text" name="comment"></p>
+  <button name="submit" value="submit">Add to List</button>
+<% end %>
