@@ -22,5 +22,15 @@ class Feed < ApplicationRecord
     doc.xpath("//#{parser}")
   end
 
-
+  def self.nytimes
+    uri = URI("https://api.nytimes.com/svc/movies/v2/reviews/picks.json")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    uri.query = URI.encode_www_form({
+      "api-key" => "#{ENV['API_KEY']}",
+      "order" => "by-publication-date"
+    })
+    request = Net::HTTP::Get.new(uri.request_uri)
+    result = JSON.parse(http.request(request).body)
+  end
 end

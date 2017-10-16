@@ -3,6 +3,8 @@
   <button name="feed" value="top10boxoffice">Top 10 Box Office</button>
   <button name="feed" value="newmovies">New Movies</button>
   <button name="feed" value="comingsoonmovies">Coming Soon Movies</button>
+  <button name="feed" value="rollingstone">Rolling Stone Movie Reviews</button>
+  <button name="feed" value="nytimes">NYTimes Movie Reviews</button>
 <% end %>
 
 <% if params[:feed] == 'indie' %>
@@ -12,17 +14,22 @@
 <% elsif params[:feed] == 'rollingstone'%>
   <% @movie_titles.each_with_index do |title, index| %>
     <p><%= title.text %></p>
-    <p><%= raw(@content[index]) %></p>
-    <p><img src="<%= @image[index]['url'] %>"></p>
+    <p><img src="<%= @image_2[index]['url'] %>"></p>
+    <%= raw(@content[index].inspect) %>
+  <% end %>
+<% elsif params[:feed] == 'nytimes' %>
+  <% @content['results'].each do |review| %>
+    <p><%= review['display_title'] %></p>
+    <p><a href="<%= review['link']['url'] %>"><img src="<%= review['multimedia']['src'] %>"></a></p>
+    <p><%= review['mpaa_rating'] %></p>
+    <p><%= review['byline'] %></p>
+    <p><%= review['headline'] %></p>
+    <p><%= review['summary_short'] %></p>
+    <p><%= review['opening_date'] %></p>
   <% end %>
 <% else %>
   <% @movies.each_with_index do |movie, index| %>
     <h4><%= @movie_titles[index].text %></h4>
     <p><%= raw(movie.text) %></p>
   <% end %>
-<% end %>
-
-<!-- figure out how these were combined -->
-<% @movie_titles.each do |title| %>
-  <p><%= title.text %></p>
 <% end %>
