@@ -1,3 +1,17 @@
 // Place all the styles related to the Feeds controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.buttons {
+  text-align: center;
+}
+
+p, h3 {
+  margin: 5px;
+}
+
+.nytimes {
+  background-color: #e4dee5;
+  padding: 25px;
+  margin: 25px
+}

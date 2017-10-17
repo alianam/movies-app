@@ -16,12 +16,12 @@ class MoviesController < ApplicationController
 
   def create
     @new_movie = Movie.new(
-      title: params[:input_title],
-      director: params[:input_director],
-      air_date: params[:input_air_date],
-      genre: params[:input_genre],
-      duration: params[:input_duration],
-      imdb_link: params[:input_imdb_link],
+      title: params[:title],
+      director: params[:director],
+      air_date: params[:air_date],
+      genre: params[:genre],
+      duration: params[:duration],
+      imdb_link: params[:imdb_link]
     )
     @new_movie.save
     redirect_to "/movies/#{@new_movie.id}"

@@ -1,14 +1,32 @@
 Add a Movie you've watched:
 
 <%= form_tag '/watched_movies', method: :post do %>
-  Title:
-  <select name="movie_id">
-  <% @movies.order(:title).each do |movie| %>
-    <option name="movie_id" value=<%= movie.id %>><%= movie.title %></option>
-  <% end %></select>
+<!-- troubleshoot why this is still dropdown -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <br />
+  <div class="container">
+    <div class="row">
+      <div class="ui-widget">
+              <label>Title: </label>
+              <select id="combobox" name="movie_id">
+                  <option></option>
+                  <% @movies.order(:title).each do |movie| %>
+                    <option name="movie_id" value=<%= movie.id %>><%= movie.title %></option>
+                  <% end %>
+            </select>
+          </div>
+    </div>
+  </div>
   <p>Comment:<input type="text" name="comment"></p>
   <p>Rating:<input type="text" name="rating"></p>
   <p>Date Watched:<input type="text" name="date_watched" value= <%=Time.now.strftime('%Y-%m-%d')%> ></p>
   <p>Theatre Name:<input type="text" name="theatre_name"></p>
   <button name="Add Movie" type="submit">Add Movie</button>
+<% end %>
+
+<br>
+
+<%= form_tag '/movies/new', method: :get do %>
+  <button type="submit">Add Movie to Database</button>
 <% end %>

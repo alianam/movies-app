@@ -3,16 +3,10 @@ Submit a new movie to add to your list:
 <br>
 
 <%= form_tag '/movies/create', method: :post do %>
-  Movie Name:
-  <select name="input_title"></select>
-  <p>Movie Rating: <input type="number" name="input_rating"></p>
-  <p>Theatre: <input type="text" name="input_theatre"></p> <!-- eventually have this be dropdown or autocomplete list -->
-  <p>Date Watched: <input type="text" name="input_date" placeholder="mm-dd-yy"></p> 
-  <p>Comment: <input type="text" name="input_comment"></p> 
-  Status:
-  <select name="input_status">
-    <option value="watched">Watched</option>
-    <option value="wishlist">Watch Later</option>
-  </select> 
+  <p>Movie Title: <input type="text" name="title"></p> <!-- eventually have this be dropdown or autocomplete list -->
+  <p>Director: <input type="text" name="director"></p> 
+  <p>Air Date: <input type="text" name="air_date"></p>
+  <p>Duration: <input type="text" name="duration"></p>
+  <p>IMDB link: <input type="text" name="imdb_link"></p>
   <p><input type="submit" name="Add Movie"></p>
 <% end %>

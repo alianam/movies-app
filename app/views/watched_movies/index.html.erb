@@ -1,18 +1,46 @@
-here is your list of watched movies
+<!-- go back and fix the layout of these or get rid of one -->
+<div>
+  <%= form_tag '/wishlist_movies', method: :get do %>
+    <span><button name="wishlist" type='submit'>Wishlist Movies</button></span>
+  <% end %> 
+  <%= form_tag '/watched_movies', method: :get do %>
+    <span><button name="watched" type='submit'>Watched Movies</button></span>
+  <% end %>
+  <%= form_tag '/watched_movies/new', method: :get do %>
+    <span><button type='submit'>Add Watched Movie</button></span>
+  <% end %>
+
+</div>
+
+<h2>Movies You've Watched</h2>
 
 <% if @watched_movies != [] %>
-  <% @watched_movies.each do |watched_movie| %>
-    <p><img src="<%= watched_movie.movie.movie_poster %>"</p>
-    <p>Title: <%= watched_movie.movie.title%><p>
-    <p>Director: <%= watched_movie.movie.director%><p>
-    <p>Rating: <%= watched_movie.rating%><p>
-    <p>Your Thoughts: <%= watched_movie.comment%><p>
-    <p>Movie Theatre: <%= watched_movie.theatre_name %><p>
-    <p>Date Watched: <%= watched_movie.date_watched %><p>
-    <%= form_tag "/watched_movies/#{watched_movie.id}/edit", method: :get do %>
-      <button name="edit movie" value="edit">Edit</button>
-    <% end %>
-  <% end %>
+    <div id="fh5co-main">
+      <div class="container">
+        <div class="row">
+          <div id="fh5co-board" data-columns>
+
+            <% @watched_movies.each do |watched_movie| %>
+              <div class="item">
+                <div class="animate-box">
+                  <a href="/movies/<%= watched_movie.movie.id%>" class="image-popup"><img src="<%= watched_movie.movie.movie_poster %>"></a>
+                </div>
+                <div class="fh5co-desc">
+                  <h4><strong><%= watched_movie.movie.title%></strong></h4>>
+                  <p><strong>Director: </strong><%= watched_movie.movie.director%></p>
+                  <p><strong>Rating: </strong><%= watched_movie.rating%></p>
+                  <p><strong>Theatre: </strong><%= watched_movie.theatre_name %><p>
+                  <p><strong>Date Watched: </strong><%= watched_movie.date_watched %><p>
+                  <%= form_tag "/watched_movies/#{watched_movie.id}/edit", method: :get do %>
+                    <button name="edit movie" value="edit">Edit</button>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
 <% else %>
   <p>You don't have any movies in your Watched list...</p>
   <%= form_tag '/watched_movies/new', method: :get do %>

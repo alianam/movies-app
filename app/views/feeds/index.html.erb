@@ -1,11 +1,13 @@
-<%= form_tag "/feeds/?feed=#{params[:feed]}", method: :get do %>
-  <button name="feed" value="indie">Indie</button>
-  <button name="feed" value="top10boxoffice">Top 10 Box Office</button>
-  <button name="feed" value="newmovies">New Movies</button>
-  <button name="feed" value="comingsoonmovies">Coming Soon Movies</button>
-  <button name="feed" value="rollingstone">Rolling Stone Movie Reviews</button>
-  <button name="feed" value="nytimes">NYTimes Movie Reviews</button>
-<% end %>
+<div class='buttons'>
+  <%= form_tag "/feeds/?feed=#{params[:feed]}", method: :get do %>
+    <button name="feed" value="indie">Indie</button>
+    <button name="feed" value="top10boxoffice">Top 10 Box Office</button>
+    <button name="feed" value="newmovies">New Movies</button>
+    <button name="feed" value="comingsoonmovies">Coming Soon Movies</button>
+    <button name="feed" value="rollingstone">Rolling Stone Movie Reviews</button>
+    <button name="feed" value="nytimes">NYTimes Movie Reviews</button>
+  <% end %>
+</div>
 
 <% if params[:feed] == 'indie' %>
   <% @movies.each do |movie| %>
@@ -14,22 +16,24 @@
 <% elsif params[:feed] == 'rollingstone'%>
   <% @movie_titles.each_with_index do |title, index| %>
     <h3><%= title.text %></h3>
-    <p><img src="<%= @image_2[index]['url'] %>"></p>
+    <p><img style='width: 50%' src="<%= @image_2[index]['url'] %>"></p>
     <%= raw(@content[index].children.text) %>
   <% end %>
 <% elsif params[:feed] == 'nytimes' %>
   <% @content['results'].each do |review| %>
-    <p><%= review['display_title'] %></p>
-    <p><a href="<%= review['link']['url'] %>"><img src="<%= review['multimedia']['src'] %>"></a></p>
-    <p><%= review['mpaa_rating'] %></p>
-    <p><%= review['byline'] %></p>
-    <p><%= review['headline'] %></p>
-    <p><%= review['summary_short'] %></p>
-    <p><%= review['opening_date'] %></p>
+    <h3><%= review['display_title'] %></h3>
+    <p><a href="<%= review['link']['url'] %>"><img style='width: 35%;margin-left: 15px;'src="<%= review['multimedia']['src'] %>"></a></p>
+    <div class='nytimes'>
+      <p><strong>Rating: </strong><%= review['mpaa_rating'] %></p>
+      <p><strong>Byline: </strong><%= review['byline'] %></p>
+      <p><strong>Headline: </strong><%= review['headline'] %></p>
+      <p><strong>Summary: </strong><%= review['summary_short'] %></p>
+      <p><strong>Opening Date: </strong><%= review['opening_date'] %></p>
+    </div>
   <% end %>
 <% else %>
   <% @movies.each_with_index do |movie, index| %>
-    <h4><%= @movie_titles[index].text %></h4>
+    <h3><%= @movie_titles[index].text %></h3>
     <p><%= raw(movie.text) %></p>
   <% end %>
 <% end %>
