@@ -13,9 +13,9 @@
   <% end %>
 <% elsif params[:feed] == 'rollingstone'%>
   <% @movie_titles.each_with_index do |title, index| %>
-    <p><%= title.text %></p>
+    <h3><%= title.text %></h3>
     <p><img src="<%= @image_2[index]['url'] %>"></p>
-    <%= raw(@content[index].inspect) %>
+    <%= raw(@content[index].children.text) %>
   <% end %>
 <% elsif params[:feed] == 'nytimes' %>
   <% @content['results'].each do |review| %>
