@@ -32,6 +32,9 @@ Rails.application.routes.draw do
 
   get '/feeds' => 'feeds#index'
 
+# this route is for the autocomplete dropdown
+  get '/movies/autocomplete_movie_title'
+
   # index
   # show
   # create

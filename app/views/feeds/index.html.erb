@@ -10,30 +10,59 @@
 </div>
 
 <% if params[:feed] == 'indie' %>
-  <% @movies.each do |movie| %>
-    <p><%= raw(movie.text) %></p>
-  <% end %>
+<div id="fh5co-main">
+  <div class="container">
+    <div class="row">
+      <div id="fh5co-board" data-columns>
+        <% @movies.each do |movie|%>
+          <div class="item">
+            <div class="animate-box">
+              <p><%= raw(movie.text) %></p>
+            </div>
+            <div class="fh5co-desc"></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 <% elsif params[:feed] == 'rollingstone'%>
   <% @movie_titles.each_with_index do |title, index| %>
-    <h3><%= title.text %></h3>
-    <p><img style='width: 50%' src="<%= @image_2[index]['url'] %>"></p>
-    <%= raw(@content[index].children.text) %>
+    <h3 style='margin-left: 20px;'><%= title.text %></h3>
+    <span><img style='width: 30%; margin-left: 25px;' src="<%= @image_2[index]['url'] %>"></span>
+    <div class='nytimes'>
+      <%= raw(@content[index].children.text) %>
+    </div>
   <% end %>
 <% elsif params[:feed] == 'nytimes' %>
   <% @content['results'].each do |review| %>
     <h3><%= review['display_title'] %></h3>
-    <p><a href="<%= review['link']['url'] %>"><img style='width: 35%;margin-left: 15px;'src="<%= review['multimedia']['src'] %>"></a></p>
+    <p><a href="<%= review['link']['url'] %>"><img style='width: 35%;margin-left: 15px;' src="<%= review['multimedia']['src'] %>"></a></p>
     <div class='nytimes'>
       <p><strong>Rating: </strong><%= review['mpaa_rating'] %></p>
       <p><strong>Byline: </strong><%= review['byline'] %></p>
       <p><strong>Headline: </strong><%= review['headline'] %></p>
       <p><strong>Summary: </strong><%= review['summary_short'] %></p>
       <p><strong>Opening Date: </strong><%= review['opening_date'] %></p>
+      <p><a href="<%= review['link']['url'] %>"><strong>Read NYTimes review</strong></a>
     </div>
   <% end %>
 <% else %>
-  <% @movies.each_with_index do |movie, index| %>
-    <h3><%= @movie_titles[index].text %></h3>
-    <p><%= raw(movie.text) %></p>
-  <% end %>
+<div id="fh5co-main">
+  <div class="container">
+    <div class="row">
+      <div id="fh5co-board" data-columns>
+        <% @movies.each_with_index do |movie, index| %>
+          <div class="item">
+            <div class="animate-box">
+              <h3><%= @movie_titles[index].text %></h3>
+              <p><%= raw(movie.text) %></p>
+            </div>
+            <div class="fh5co-desc"></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 <% end %>

@@ -1,15 +1,32 @@
 <h2>Browse All Movies: </h2>
 
-<%= paginate @movies, window: 3 %>
-<% @movies.each do |movie|%>
-  <h4><%= movie.title %></h4>
-  <p><a href="/movies/<%= movie.id %>"><img src=<%= movie.movie_poster%>></a></p>
-  <p>Director: <%= movie.director %></p>
-  <% movie.genres.each do |genre| %>
-    <span>| <%= genre.category %></span>
-  <% end %>
-  <%= form_tag '/wishlist_movies', method: :post do %>
-    <button name="submit" value="submit">Add To Your Wishist</button>
-    <input type="hidden" name="movie_id" value=<%= movie.id %>>
-  <% end %>
-<% end %>
+<div class='pagination'>
+  <%= paginate @movies, window: 3 %>
+</div>
+
+<div id="fh5co-main">
+  <div class="container">
+    <div class="row">
+      <div id="fh5co-board" data-columns>
+        <% @movies.each do |movie|%>
+          <div class="item">
+            <div class="animate-box">
+              <a href="/movies/<%= movie.id %>"><img src="<%= movie.movie_poster %>"></a>
+            </div>
+            <div class="fh5co-desc">
+              <h4><%= movie.title %></h4>
+              <p><strong>Director: </strong><%= movie.director %></p>
+              <% movie.genres.each do |genre| %>
+                <span>| <%= genre.category %></span>
+              <% end %>
+              <%= form_tag '/wishlist_movies', method: :post do %>
+                <p><button name="submit" value="submit">Add To Wishist</button></p>
+                <input type="hidden" name="movie_id" value=<%= movie.id %>>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

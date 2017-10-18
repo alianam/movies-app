@@ -1,10 +1,10 @@
-<h1>Login</h1>
+<h2>Login</h2>
 <%= form_tag "/login", method: :post do %>
-  <div>
+  <div class="form-group container">
     Username: <input type="username" name="username">
   </div>
-  <div>
+  <div class="form-group container">
     Password: <input type="password" name="password">
   </div>
-  <input type="submit" value="Log In">
+  <input class="col-md-2 btn-primary single-button" type="submit" value="Log In">
 <% end %>

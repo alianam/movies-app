@@ -1,13 +1,21 @@
 <!-- This is just one movie -->
 
 <h2><%= @movie.title %></h2>
-<p><img src= <%= @movie.movie_poster %>></p>
-<p>Director: <%= @movie.director %></p>
-<p>Air Date: <%= @movie.air_date %></p>
-<p>Duration: <%= @movie.duration %> minutes</p>
-<p>Genres:</p>
-<% @movie.genres.each do |genre| %>
-  <span>| <%= genre.category %></span>
-<% end %>
-<p>Gross: <%= @movie.gross %></p>
-<p><a href=<%= @movie.imdb_link %>>IMDB Link</a></p>
+
+<div class='movie-show'>
+  <p><img src= <%= @movie.movie_poster %>></p>
+  <p><strong>Director: </strong><%= @movie.director %></p>
+  <p><strong>Air Date: </strong><%= @movie.air_date %></p>
+  <p><strong>Duration: </strong><%= @movie.duration %> minutes</p>
+  <p><strong>Genres:</strong></p>
+  <% @movie.genres.each do |genre| %>
+    <span>| <%= genre.category %></span>
+  <% end %>
+  <p><strong>Gross: </strong><%= @movie.gross %></p>
+  <p><a href=<%= @movie.imdb_link %>>IMDB Link</a></p>
+
+  <br>
+  <%= form_tag '/movies/index', method: :get do %>
+    <button type='submit'>Back to All Movies</button>
+  <% end %>
+</div>

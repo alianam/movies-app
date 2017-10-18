@@ -1,140 +1,143 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-$( function() {
-  $.widget( "custom.combobox", {
-    _create: function() {
-      this.wrapper = $( "<span>" )
-        .addClass( "custom-combobox" )
-        .insertAfter( this.element );
+// this is from the bootstrap autocomplete I tried to install 
+// https://bootsnipp.com/snippets/0Bn1j
 
-      this.element.hide();
-      this._createAutocomplete();
-      this._createShowAllButton();
-    },
+// $( function() {
+//   $.widget( "custom.combobox", {
+//     _create: function() {
+//       this.wrapper = $( "<span>" )
+//         .addClass( "custom-combobox" )
+//         .insertAfter( this.element );
 
-    _createAutocomplete: function() {
-      var selected = this.element.children( ":selected" ),
-        value = selected.val() ? selected.text() : "";
+//       this.element.hide();
+//       this._createAutocomplete();
+//       this._createShowAllButton();
+//     },
 
-      this.input = $( "<input>" )
-        .appendTo( this.wrapper )
-        .val( value )
-        .attr( "title", "" )
-        .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
-        .autocomplete({
-          delay: 0,
-          minLength: 0,
-          source: $.proxy( this, "_source" )
-        })
-        .tooltip({
-          classes: {
-            "ui-tooltip": "ui-state-highlight"
-          }
-        });
+//     _createAutocomplete: function() {
+//       var selected = this.element.children( ":selected" ),
+//         value = selected.val() ? selected.text() : "";
 
-      this._on( this.input, {
-        autocompleteselect: function( event, ui ) {
-          ui.item.option.selected = true;
-          this._trigger( "select", event, {
-            item: ui.item.option
-          });
-        },
+//       this.input = $( "<input>" )
+//         .appendTo( this.wrapper )
+//         .val( value )
+//         .attr( "title", "" )
+//         .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
+//         .autocomplete({
+//           delay: 0,
+//           minLength: 0,
+//           source: $.proxy( this, "_source" )
+//         })
+//         .tooltip({
+//           classes: {
+//             "ui-tooltip": "ui-state-highlight"
+//           }
+//         });
 
-        autocompletechange: "_removeIfInvalid"
-      });
-    },
+//       this._on( this.input, {
+//         autocompleteselect: function( event, ui ) {
+//           ui.item.option.selected = true;
+//           this._trigger( "select", event, {
+//             item: ui.item.option
+//           });
+//         },
 
-    _createShowAllButton: function() {
-      var input = this.input,
-        wasOpen = false
+//         autocompletechange: "_removeIfInvalid"
+//       });
+//     },
 
-      $( "<a>" )
-        .attr( "tabIndex", -1 )
-        .attr( "title", "Show All Items" )
-        .attr( "height", "" )
-        .tooltip()
-        .appendTo( this.wrapper )
-        .button({
-          icons: {
-            primary: "ui-icon-triangle-1-s"
-          },
-          text: "false"
-        })
-        .removeClass( "ui-corner-all" )
-        .addClass( "custom-combobox-toggle ui-corner-right" )
-        .on( "mousedown", function() {
-          wasOpen = input.autocomplete( "widget" ).is( ":visible" );
-        })
-        .on( "click", function() {
-          input.trigger( "focus" );
+//     _createShowAllButton: function() {
+//       var input = this.input,
+//         wasOpen = false
 
-          // Close if already visible
-          if ( wasOpen ) {
-            return;
-          }
+//       $( "<a>" )
+//         .attr( "tabIndex", -1 )
+//         .attr( "title", "Show All Items" )
+//         .attr( "height", "" )
+//         .tooltip()
+//         .appendTo( this.wrapper )
+//         .button({
+//           icons: {
+//             primary: "ui-icon-triangle-1-s"
+//           },
+//           text: "false"
+//         })
+//         .removeClass( "ui-corner-all" )
+//         .addClass( "custom-combobox-toggle ui-corner-right" )
+//         .on( "mousedown", function() {
+//           wasOpen = input.autocomplete( "widget" ).is( ":visible" );
+//         })
+//         .on( "click", function() {
+//           input.trigger( "focus" );
 
-          // Pass empty string as value to search for, displaying all results
-          input.autocomplete( "search", "" );
-        });
-    },
+//           // Close if already visible
+//           if ( wasOpen ) {
+//             return;
+//           }
 
-    _source: function( request, response ) {
-      var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
-      response( this.element.children( "option" ).map(function() {
-        var text = $( this ).text();
-        if ( this.value && ( !request.term || matcher.test(text) ) )
-          return {
-            label: text,
-            value: text,
-            option: this
-          };
-      }) );
-    },
+//           // Pass empty string as value to search for, displaying all results
+//           input.autocomplete( "search", "" );
+//         });
+//     },
 
-    _removeIfInvalid: function( event, ui ) {
+//     _source: function( request, response ) {
+//       var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
+//       response( this.element.children( "option" ).map(function() {
+//         var text = $( this ).text();
+//         if ( this.value && ( !request.term || matcher.test(text) ) )
+//           return {
+//             label: text,
+//             value: text,
+//             option: this
+//           };
+//       }) );
+//     },
 
-      // Selected an item, nothing to do
-      if ( ui.item ) {
-        return;
-      }
+//     _removeIfInvalid: function( event, ui ) {
 
-      // Search for a match (case-insensitive)
-      var value = this.input.val(),
-        valueLowerCase = value.toLowerCase(),
-        valid = false;
-      this.element.children( "option" ).each(function() {
-        if ( $( this ).text().toLowerCase() === valueLowerCase ) {
-          this.selected = valid = true;
-          return false;
-        }
-      });
+//       // Selected an item, nothing to do
+//       if ( ui.item ) {
+//         return;
+//       }
 
-      // Found a match, nothing to do
-      if ( valid ) {
-        return;
-      }
+//       // Search for a match (case-insensitive)
+//       var value = this.input.val(),
+//         valueLowerCase = value.toLowerCase(),
+//         valid = false;
+//       this.element.children( "option" ).each(function() {
+//         if ( $( this ).text().toLowerCase() === valueLowerCase ) {
+//           this.selected = valid = true;
+//           return false;
+//         }
+//       });
 
-      // Remove invalid value
-      this.input
-        .val( "" )
-        .attr( "title", value + " didn't match any item" )
-        .tooltip( "open" );
-      this.element.val( "" );
-      this._delay(function() {
-        this.input.tooltip( "close" ).attr( "title", "" );
-      }, 2500 );
-      this.input.autocomplete( "instance" ).term = "";
-    },
+//       // Found a match, nothing to do
+//       if ( valid ) {
+//         return;
+//       }
 
-    _destroy: function() {
-      this.wrapper.remove();
-      this.element.show();
-    }
-  });
+//       // Remove invalid value
+//       this.input
+//         .val( "" )
+//         .attr( "title", value + " didn't match any item" )
+//         .tooltip( "open" );
+//       this.element.val( "" );
+//       this._delay(function() {
+//         this.input.tooltip( "close" ).attr( "title", "" );
+//       }, 2500 );
+//       this.input.autocomplete( "instance" ).term = "";
+//     },
 
-  $( "#combobox" ).combobox();
-  $( "#toggle" ).on( "click", function() {
-    $( "#combobox" ).toggle();
-  });
-} );
+//     _destroy: function() {
+//       this.wrapper.remove();
+//       this.element.show();
+//     }
+//   });
+
+//   $( "#combobox" ).combobox();
+//   $( "#toggle" ).on( "click", function() {
+//     $( "#combobox" ).toggle();
+//   });
+// } );

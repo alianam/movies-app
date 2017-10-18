@@ -23,10 +23,10 @@
             <% @watched_movies.each do |watched_movie| %>
               <div class="item">
                 <div class="animate-box">
-                  <a href="/movies/<%= watched_movie.movie.id%>" class="image-popup"><img src="<%= watched_movie.movie.movie_poster %>"></a>
+                  <a href="/movies/<%= watched_movie.movie.id%>"><img style='margin-left: auto; margin-right: auto;' src="<%= watched_movie.movie.movie_poster %>"></a>
                 </div>
                 <div class="fh5co-desc">
-                  <h4><strong><%= watched_movie.movie.title%></strong></h4>>
+                  <h4><strong><%= watched_movie.movie.title%></strong></h4>
                   <p><strong>Director: </strong><%= watched_movie.movie.director%></p>
                   <p><strong>Rating: </strong><%= watched_movie.rating%></p>
                   <p><strong>Theatre: </strong><%= watched_movie.theatre_name %><p>
