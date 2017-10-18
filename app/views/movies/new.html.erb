@@ -2,7 +2,7 @@ Submit a new movie to add to your list:
 <hr>
 <br>
 
-<%= form_tag '/movies/create', method: :post do %>
+<%= form_tag '/movies/create', class: 'Form', method: :post do %>
   <p>Movie Title: <input type="text" name="title"></p> <!-- eventually have this be dropdown or autocomplete list -->
   <p>Director: <input type="text" name="director"></p> 
   <p>Air Date: <input type="text" name="air_date"></p>

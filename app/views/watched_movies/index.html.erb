@@ -1,16 +1,5 @@
 <!-- go back and fix the layout of these or get rid of one -->
-<div>
-  <%= form_tag '/wishlist_movies', method: :get do %>
-    <span><button name="wishlist" type='submit'>Wishlist Movies</button></span>
-  <% end %> 
-  <%= form_tag '/watched_movies', method: :get do %>
-    <span><button name="watched" type='submit'>Watched Movies</button></span>
-  <% end %>
-  <%= form_tag '/watched_movies/new', method: :get do %>
-    <span><button type='submit'>Add Watched Movie</button></span>
-  <% end %>
-
-</div>
+<%= render partial: "shared/nav" %>
 
 <h2>Movies You've Watched</h2>
 

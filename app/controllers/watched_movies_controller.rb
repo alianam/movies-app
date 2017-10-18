@@ -1,6 +1,6 @@
 class WatchedMoviesController < ApplicationController
   def index
-    @watched_movies = WatchedMovie.where(user_id: current_user.id).order(:date_watched)
+    @watched_movies = WatchedMovie.where(user_id: current_user&.id).order(:date_watched)
     render 'index.html.erb'
   end
 

@@ -16,9 +16,7 @@
             <div class="fh5co-desc">
               <h4><%= movie.title %></h4>
               <p><strong>Director: </strong><%= movie.director %></p>
-              <% movie.genres.each do |genre| %>
-                <span>| <%= genre.category %></span>
-              <% end %>
+
               <%= form_tag '/wishlist_movies', method: :post do %>
                 <p><button name="submit" value="submit">Add To Wishist</button></p>
                 <input type="hidden" name="movie_id" value=<%= movie.id %>>

@@ -1,21 +1,22 @@
 <h2>Movies You Want To Watch:</h2>
 
-    <div id="fh5co-main">
-      <div class="container">
-        <div class="row">
-          <div id="fh5co-board" data-columns>
-            <% @wishlist_movies.each do |movie| %>
-              <div class="item">
-                <div class="animate-box">
-                  <a href="/movies/<%= movie.movie.id%>"><img style='margin-left: auto; margin-right: auto;' src="<%= movie.movie.movie_poster %>"></a>
-                </div>
-                <div class="fh5co-desc">
-                  <h4><strong><%= movie.movie.title%></strong></h4>
-                  <p><strong>Comment: </strong><%= movie.comment%></p>
-                </div>
-              </div>
-            <% end %>
+<%= render partial: "shared/nav" %>
+
+<div id="fh5co-main">
+  <div class="container">
+    <div class="row">
+      <div id="fh5co-board" data-columns>
+        <% @wishlist_movies.each do |movie| %>
+          <div class="item">
+            <div class="animate-box">
+              <a href="/movies/<%= movie.movie.id%>"><img style='margin-left: auto; margin-right: auto;' src="<%= movie.movie.movie_poster %>"></a>
+            </div>
+            <div class="fh5co-desc">
+              <h4><strong><%= movie.movie.title%></strong></h4>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
+  </div>
+</div>

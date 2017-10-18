@@ -4,7 +4,7 @@ class Movie < ApplicationRecord
   has_many :genre_movies
   has_many :genres, through: :genre_movies
 
-  paginates_per 15
+  paginates_per 10
 
   def movie_poster
     doc = Nokogiri::HTML(open("#{imdb_link}"))

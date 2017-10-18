@@ -1,32 +1,27 @@
 <h2>Add A Movie You've Watched:</h2>
 
-<%= form_tag '/watched_movies', method: :post do %>
+<%= form_tag '/watched_movies', class: 'Form', method: :post do %>
 <!-- this line here is for the ajax based autocomplete -->
   <!-- autocomplete_field_tag 'movie', '', address_autocomplete_path, :size => 75 -->
-  <div class="single-button">
-    <div class="row">
-      <div class="ui-widget">
-        <label>Title: </label>
-        <select id="combobox" name="movie_id">
-          <option></option>
-          <% @movies.order(:title).each do |movie| %>
-          <option name="movie_id" value=<%= movie.id %>><%= movie.title %></option>
-          <% end %>
-        </select>
-      </div>
-    </div>
-  </div>
+
   <div class="form-group single-button">
-    <p>Comment: <input type="text" name="comment"></p>
-    <p>Rating: <input type="text" name="rating"></p>
-    <p>Date Watched: <input type="text" name="date_watched" value= <%=Time.now.strftime('%Y-%m-%d')%> ></p>
-    <p>Theatre Name: <input type="text" name="theatre_name"></p>
-    <button class="col-md-2 btn-primary" name="Add Movie" type="submit">Add Movie</button>
+    <label>Title: </label>
+    <select name="movie_id">
+      <option></option>
+      <% @movies.order(:title).each do |movie| %>
+        <option name="movie_id" value=<%= movie.id %>><%= movie.title %></option>
+      <% end %></select>
+
+    <p><label>Comment: </label><input type="text" name="comment"></p>
+    <p><label>Rating: </label><input type="text" name="rating"></p>
+    <p><label>Date Watched: </label><input type="text" name="date_watched" value= <%=Time.now.strftime('%Y-%m-%d')%> ></p>
+    <p><label>Theatre Name: </label><input type="text" name="theatre_name"></p>
+    <button class="col-md-2" name="Add Movie" type="submit">Add Movie</button>
   </div>
 <% end %>
 
 <br>
-
+<br>
 <%= form_tag '/movies/new', method: :get do %>
-  <button class="col-md-2 btn-primary single-button" type="submit">Add Movie to Database</button>
+  <button class="col-md-2 single-button" type="submit">Add A New Movie to Database</button>
 <% end %>

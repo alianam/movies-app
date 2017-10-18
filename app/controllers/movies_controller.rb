@@ -2,7 +2,8 @@ class MoviesController < ApplicationController
   # autocomplete :movie, :title
 
   def index
-    @movies = Movie.order(:title).page params[:page]
+    @movies = Movie.all.page params[:page]
+    # @movies = Movie.order(:title).page params[:page]
     render 'index.html.erb'
   end
 
