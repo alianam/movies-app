@@ -13,16 +13,17 @@ class UsersController < ApplicationController
       username: params[:username],
       first_name: params[:first_name],
       last_name: params[:last_name],
-      zip_code: params[:zip_code]
+      password: params[:password]
     )
     new_user.save
-    if user.save
-      session[:user_id] = user.id
+    p new_user.errors.full_messages
+    if new_user.save
+      session[:user_id] = new_user.id
       # flash[:success] = 'Successfully created account!'
       redirect_to "/watched_movies"
     else
       # need to add the ability to flash a warning
-      # flash[:warning] = 'Invalid email or password!'
+      flash[:warning] = 'Invalid email or password!'
       redirect_to '/users/new'
     end
   end
