@@ -1,5 +1,9 @@
 <h2>Add A Movie You've Watched:</h2>
 
+<%= render partial: "shared/nav" %>
+<br>
+<br>
+
 <%= form_tag '/watched_movies', class: 'Form', method: :post do %>
 <!-- this line here is for the ajax based autocomplete -->
   <!-- autocomplete_field_tag 'movie', '', address_autocomplete_path, :size => 75 -->

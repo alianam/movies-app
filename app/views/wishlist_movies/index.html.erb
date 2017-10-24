@@ -13,6 +13,12 @@
             </div>
             <div class="fh5co-desc">
               <h4><strong><%= movie.movie.title%></strong></h4>
+              <%= form_tag '/watched_movies', method: :post do%>
+                <button type='submit' class='single-button'>Add to Watched</button>
+                <input type="hidden" name="movie_id" value="<%= movie.movie.id%>">
+                <input type="hidden" name="user_id" value="<%= current_user.id%>">
+                <input type="hidden" name="wishlist_id" value="<%= movie.id %>">
+              <% end %>
             </div>
           </div>
         <% end %>

@@ -6,16 +6,44 @@
   text-align: center;
 }
 
-p, h3 {
-  margin: 5px;
+p {
+  margin: 10px;
+  color: #1d242b;
 }
 
-.nytimes {
+.feed-content {
   background-color: #e4dee5;
   padding: 25px;
-  margin: 25px
+  margin: 25px;
+  color: #1d242b;
+}
+
+.nytimes-content strong {
+  color: #1e4a7a;
+}
+
+.nytimes-content {
+  color: #1d242b;
+}
+
+.feed-nytimes h3 {
+  color: #721a5b;
+  margin: 1em;
+  margin-top: 2em;
+  margin-left: 1em;
+}
+
+.feed-filters {
+  color: #429b91;
+}
+
+.feed-rollingstone h3 {
+  color: #721a5b;
+  margin: 1em;
+  margin-top: 2em;
+  margin-left: 1em;
 }
 
 h3 {
-  color: #555c66;
+  color: #d9534f;
 }

@@ -1,4 +1,4 @@
-<div class='buttons'>
+<div class='feed-filters buttons'>
   <%= form_tag "/feeds/?feed=#{params[:feed]}", method: :get do %>
     <button name="feed" value="indie">Indie</button>
     <button name="feed" value="top10boxoffice">Top 10 Box Office</button>
@@ -27,26 +27,32 @@
   </div>
 </div>
 <% elsif params[:feed] == 'rollingstone'%>
-  <% @movie_titles.each_with_index do |title, index| %>
-    <h3 style='margin-left: 20px;'><%= title.text %></h3>
-    <span><img style='width: 30%; margin-left: 25px;' src="<%= @image_2[index]['url'] %>"></span>
-    <div class='nytimes'>
-      <%= raw(@content[index].children.text) %>
-    </div>
-  <% end %>
+  <h2>Rolling Stone Reviews:</h2>
+  <div class='feed-nytimes'>
+    <% @movie_titles.each_with_index do |title, index| %>
+      <h3><%= title.text %></h3>
+      <span><img style='width: 30%; margin-left: 25px;' src="<%= @image_2[index]['url'] %>"></span>
+      <div class='feed-content'>
+        <%= raw(@content[index].children.text) %>
+      </div>
+    <% end %>
+  </div>
 <% elsif params[:feed] == 'nytimes' %>
-  <% @content['results'].each do |review| %>
-    <h3><%= review['display_title'] %></h3>
-    <p><a href="<%= review['link']['url'] %>"><img style='width: 35%;margin-left: 15px;' src="<%= review['multimedia']['src'] %>"></a></p>
-    <div class='nytimes'>
-      <p><strong>Rating: </strong><%= review['mpaa_rating'] %></p>
-      <p><strong>Byline: </strong><%= review['byline'] %></p>
-      <p><strong>Headline: </strong><%= review['headline'] %></p>
-      <p><strong>Summary: </strong><%= review['summary_short'] %></p>
-      <p><strong>Opening Date: </strong><%= review['opening_date'] %></p>
-      <p><a href="<%= review['link']['url'] %>"><strong>Read NYTimes review</strong></a>
-    </div>
-  <% end %>
+  <h2>New York Times Reviews:</h2>
+  <div class='feed-nytimes'>
+    <% @content['results'].each do |review| %>
+      <h3 ><%= review['display_title'] %></h3>
+      <p><a href="<%= review['link']['url'] %>"><img style='width: 35%;margin-left: 15px;' src="<%= review['multimedia']['src'] %>"></a></p>
+      <div class='feed-content'>
+        <p><strong>Rating: </strong><%= review['mpaa_rating'] %></p>
+        <p><strong>Byline: </strong><%= review['byline'] %></p>
+        <p><strong>Headline: </strong><%= review['headline'] %></p>
+        <p><strong>Summary: </strong><%= review['summary_short'] %></p>
+        <p><strong>Opening Date: </strong><%= review['opening_date'] %></p>
+        <p><a href="<%= review['link']['url'] %>"><strong>Read NYTimes review</strong></a></p>
+      </div>
+    <% end %>
+  </div>
 <% else %>
 <div id="fh5co-main">
   <div class="container">
