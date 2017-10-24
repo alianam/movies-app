@@ -1,10 +1,15 @@
 <h2>Add a Movie You Want To Watch:</h2>
 
+<%= render partial: "shared/nav" %>
+<br>
+<br>
+
 <div class='form-group'>
   <%= form_tag '/wishlist_movies', class: "Form", method: :post do %>
     <div>
       <label>Choose a Movie:</label>
       <select name="movie_id">
+      <option></option>
       <% @movies.order(:title).each do |movie| %>
         <option name="movie_id" value=<%= movie.id %>><%= movie.title %></option>
       <% end %></select>
