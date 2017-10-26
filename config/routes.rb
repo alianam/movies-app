@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   get "/logout" => "sessions#destroy"
 
   get '/feeds' => 'feeds#index'
-
+  get '/' => 'feeds#index'
 # this route is for the autocomplete dropdown
   get '/movies/autocomplete_movie_title'
 
