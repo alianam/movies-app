@@ -1,10 +1,16 @@
-<h2>Login</h2>
+<h2 class='Form'>Login</h2>
+
 <%= form_tag "/login", method: :post do %>
-  <div class="form-group container">
-    Username: <input type="username" name="username">
+  <div class="form-group Form">
+    Username: <input type="" ="username" name="username">
   </div>
-  <div class="form-group container">
+  <div class="form-group Form">
     Password: <input type="password" name="password">
   </div>
   <input class="col-md-2 btn-primary single-button" type="submit" value="Log In">
 <% end %>
+
+<br>
+<br>
+
+<p>Need an account?<a href='/users/new'><strong> Create One Here</strong></a></p>

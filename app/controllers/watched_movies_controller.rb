@@ -10,19 +10,23 @@ class WatchedMoviesController < ApplicationController
   end
 
   def create
-    new_watched_movie = WatchedMovie.create(
-      movie_id: params[:movie_id],
-      user_id: current_user.id,
-      comment: params[:comment],
-      date_watched: params[:date_watched],
-      theatre_name: params[:theatre_name],
-      rating: params[:rating]
-    )
-    if params[:wishlist_id]
-      delete_wishlist = WishlistMovie.find_by(id: params[:wishlist_id])
-      delete_wishlist.destroy
+    if current_user&.id
+      new_watched_movie = WatchedMovie.create(
+        movie_id: params[:movie_id],
+        user_id: current_user.id,
+        comment: params[:comment],
+        date_watched: params[:date_watched],
+        theatre_name: params[:theatre_name],
+        rating: params[:rating]
+      )
+        if params[:wishlist_id]
+          delete_wishlist = WishlistMovie.find_by(id: params[:wishlist_id])
+          delete_wishlist.destroy
+        end
+      redirect_to '/watched_movies'
+    else
+      redirect_to '/login'
     end
-    redirect_to '/watched_movies'
   end
 
   def edit

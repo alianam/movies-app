@@ -1,6 +1,6 @@
 class WishlistMoviesController < ApplicationController
   def index
-    @wishlist_movies = WishlistMovie.all
+    @wishlist_movies = WishlistMovie.where(user_id: current_user&.id)
     render 'index.html.erb'
   end
 
@@ -15,13 +15,16 @@ class WishlistMoviesController < ApplicationController
   end
 
   def create
-    new_wishlist_movie = WishlistMovie.create!(
-      movie_id: params[:movie_id],
-      # change this to param
-      user_id: current_user.id,
-      comment: params[:comment]
-    )
-    redirect_to '/wishlist_movies'
+    if current_user&.id
+      new_wishlist_movie = WishlistMovie.create!(
+        movie_id: params[:movie_id],
+        user_id: current_user.id,
+        comment: params[:comment]
+      )
+      redirect_to '/wishlist_movies'
+    else
+      redirect_to '/login'
+    end
   end
 
   def update

@@ -1,4 +1,3 @@
-<!-- go back and fix the layout of these or get rid of one -->
 <%= render partial: "shared/nav" %>
 
 <h2>Movies You've Watched</h2>
@@ -31,8 +30,12 @@
       </div>
     </div>
 <% else %>
-  <p>You don't have any movies in your Watched list...</p>
-  <%= form_tag '/watched_movies/new', method: :get do %>
-    <button name="submit" value="submit">Add Movie to Watched List</button>
+  <% if current_user&.id %>
+    <p>You don't have any movies in your Watched list...</p>
+    <%= form_tag '/watched_movies/new', method: :get do %>
+      <button name="submit" value="submit">Add Movie to Watched List</button>
+    <% end %>
+  <% else %>
+    <p>Please <a href="/login"><strong>Login</strong></a> or <a href="/users/new"><strong> Create an Account</strong></a> to add movies.</p>
   <% end %>
 <% end %>
