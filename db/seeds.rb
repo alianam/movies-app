@@ -32,6 +32,16 @@
 # 	end
 # end
 
+new_movies = Feed.
+# start at index 2
+new_movie_titles = Feed.title('newmovies')
+
+
+
+Movie.new(
+  title: 
+)
+
 
 
 
